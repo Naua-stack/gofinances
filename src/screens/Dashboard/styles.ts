@@ -91,7 +91,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
-export const TransactionList = styled(
+export const TransactionsList = styled(
   FlatList as new (
     props: FlatListProps<DataListProps>
   ) => FlatList<DataListProps>
