@@ -1,4 +1,6 @@
-import React from "react";
+import "react-native-gesture-handler";
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
 
