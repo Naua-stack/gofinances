@@ -23,6 +23,7 @@ import { TransactionTypeButton } from "../../components/TransactionTypeButton";
 import { useState } from "react";
 import { CategorySelectButton } from "../../components/Form/CategorySelectButton";
 import { CategorySelect } from "../CategorySelect";
+import { useAuth } from "../../hooks/auth";
 
 interface FormData {
   name: string;
@@ -53,6 +54,9 @@ export function Register() {
     key: "category",
     name: "Categoria",
   });
+
+  const { user } = useAuth();
+
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
@@ -84,7 +88,7 @@ export function Register() {
     };
 
     try {
-      const dataKey = "@gofinances:transactions";
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
 
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
@@ -104,8 +108,6 @@ export function Register() {
 
       navigate("Listagem");
     } catch (error) {
-      console.log(error);
-
       Alert.alert("Não foi possível salvar");
     }
   }
